@@ -47,18 +47,38 @@ function whichStar(tweet){
   if(starIndex != -1){
     return 5;
   }
+  starIndex = tweet.indexOf("* * * * *");
+  if(starIndex != -1){
+    return 5;
+  }
+
   starIndex = tweet.indexOf("****");
   if(starIndex != -1){
     return 4;
   }
+  starIndex = tweet.indexOf("* * * *");
+  if(starIndex != -1){
+    return 4;
+  }
+
   starIndex = tweet.indexOf("***");
   if(starIndex != -1){
     return 3;
   }
+  starIndex = tweet.indexOf("* * *");
+  if(starIndex != -1){
+    return 3;
+  }
+
   starIndex = tweet.indexOf(" **");
   if(starIndex != -1){
     return 2;
   }
+  starIndex = tweet.indexOf(" * *");
+  if(starIndex != -1){
+    return 2;
+  }
+
   starIndex = tweet.indexOf(" *");
   if(starIndex != -1){
     return 1;

@@ -46,7 +46,11 @@ var tweets = {
 "4* show":4,
 "I give it 4.5 stars":-1,
 "I give it 2.5/5":-1,
-"it's a 3.5* show":-1
+"it's a 3.5* show":-1,
+"slightly better * *":2,
+"average * * *":3,
+"good * * * *":4,
+"see this * * * * *":5
 };
 
 for(i in tweets)
