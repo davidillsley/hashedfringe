@@ -1,0 +1,51 @@
+<html>
+<head>
+<title>hashedfringe</title>
+<style>
+body {
+	padding: 0;
+	font-family: "Gill Sans", "Gill Sans Std", "Gill Sans MT", Verdana, "Bitstream Vera Sans", sans-serif;
+	color: #123456;
+	background-color: #ffffff;
+	}
+a {
+	color: #123;
+	text-decoration:none;
+}
+.fv {
+	color:#456687;
+        background-color: white;
+}
+</style>
+<script src="http://127.0.0.1:1337/"></script>
+<script>
+function populate(){
+var wrapper = document.getElementById("wrapper");
+for(var i=5;i>0;i--){
+if(map[i]){
+var newElement = document.createElement("div");
+newElement.innerHTML="<div><div class=\"fv\"><strong style=\"color:#123456\">Latest "+i+"*</strong><br />"+
+map[i].text+
+"<br /><span style=\"padding-left:30px\"><a href=\"http://twitter.com/"+map[i].username+"\" >"+map[i].username+"</a> @ "+map[i].date+"</span><br /></div>"+
+"<img style=\"position:relative; left:400px; top:-20px;\" src=\""+map[i].image+"\"></div>";
+wrapper.appendChild(newElement);
+}
+}
+document.getElementById("lastUpdated").innerHTML = lastUpdated;
+}
+</script>
+</head>
+<body onLoad="populate();">
+<div style="width:400px;">
+<em style="padding-top:-10px">Fresh reviews, direct from <span style="font-size:2em; position:relative; top:20px;">#edfringe</span></em>
+<br />
+<br />
+<br />
+<div id="wrapper">
+
+</div>
+<div style="font-size:0.7em">Last updated: <span id="lastUpdated"></span>
+<br />Site by <a href="">davidillsley</a></div>
+</div>
+</body>
+</html>
