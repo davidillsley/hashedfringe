@@ -18,7 +18,7 @@ var tweetparse = require("./tweetparse.js");
 var tweets = {
 "not a review":-1,
 "still not a 5 anything review":-1,
-"pretty crappy *":1,
+"pretty crappy *": -1,
 "slightly better **":2,
 "average ***":3,
 "good ****":4,
@@ -50,7 +50,8 @@ var tweets = {
 "slightly better * *":2,
 "average * * *":3,
 "good * * * *":4,
-"see this * * * * *":5
+"see this * * * * *":5,
+"giving * up":-1
 };
 
 for(i in tweets)

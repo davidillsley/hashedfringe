@@ -79,9 +79,6 @@ function whichStar(tweet){
     return 2;
   }
 
-  starIndex = tweet.indexOf(" *");
-  if(starIndex != -1){
-    return 1;
-  }
+  // Just too hard to detect a single '*' for the moment
   return -1;
 }
