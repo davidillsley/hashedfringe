@@ -26,6 +26,7 @@ function RefreshRequest(callback){
 	this.cback = callback;
 	this.message = '';
 	this.processChunk = function(chunk){
+		console.log(chunk);
 		if(self.message == undefined || self.message == "undefined"){
 			self.message = "";
 		}
@@ -36,6 +37,7 @@ function RefreshRequest(callback){
     			while (newlineIndex !== -1) {
         			var tweet = self.message.slice(0, newlineIndex);
 				if(tweet.length >0){ // Hack to avoid newl
+					console.log("processing: "+tweet);
 					var obj = JSON.parse(tweet);
 					self.cback(obj);
 				}
@@ -45,7 +47,8 @@ function RefreshRequest(callback){
 		}
 		
 	};
-	this.processComplete = function(){
+	this.processComplete = function(data){
+		console.log("processComplete: "+data);
   	  self.start();
         };
 	this.start = function(){

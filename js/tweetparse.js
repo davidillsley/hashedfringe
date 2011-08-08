@@ -28,14 +28,14 @@ var containsDivision = tweet2.indexOf("\/5") != -1;
 console.log(containsDivision);
 
 console.log(whichStar(tweet2));
-console.log("I give it 4 stars".match("([1-5]|one|two|three|four|five)[ ]?(star|[\*])"));
+console.log("dottest"+"I give it 4.5 stars".match("([^\.?][1-5]|one|two|three|four|five)[ ]?(star|[\*])"));
 console.log(tweet2.match("[1-5]\/5"));
 
-var re = /(([1-5]|one|two|three|four|five)[ ]?(star|[\*])|[1-5]\/5)/i;
-var tweets = ["not a review", "still not a 5 anything review","pretty crappy *","slightly better **","average ***","good ****","see this *****","This is a 1/5 show","This is a 2/5 show", "this is a 3/5 show", "this is a 4/5 show", "This is a 5/5 show","I give it 1*","I give it 2*", "I give it 3*s","I give it 4*s", "I give it 5*s","I give it 1 star","I give it 2 stars","I give it 3 stars", "I give it 4 stars","I give it 5 stars","I give it one star", "I give it two stars", "I give it three stars","I give it four stars","I give it five stars"];
+var re = /((^[1-5]|[^\.?][1-5]|one|two|three|four|five)[ ]?(star|[\*])|[^\.]?[1-5]\/5)/i;
+var tweets = ["not a review", "still not a 5 anything review","pretty crappy *","slightly better **","average ***","good ****","see this *****","This is a 1/5 show","This is a 2/5 show", "this is a 3/5 show", "this is a 4/5 show", "This is a 5/5 show","I give it 1*","I give it 2*", "I give it 3*s","I give it 4*s", "I give it 5*s","I give it 1 star","I give it 2 stars","I give it 3 stars", "I give it 4 stars","I give it 5 stars","I give it one star", "I give it two stars", "I give it three stars","I give it four stars","I give it five stars","4* show"];
 
 function whichStar(tweet){
-  var re = /(([1-5]|one|two|three|four|five)[ ]?(star|[\*])|[1-5]\/5)/i;
+  var re = /((^[1-5]|[^\.][1-5]|one|two|three|four|five)[ ]?(star|[\*])|(^[1-5]|[^\.][1-5])\/5)/i;
   var matched = re.exec(tweet);
   if(matched !=null){
     var matchString = matched[0];
@@ -53,6 +53,9 @@ function whichStar(tweet){
     }
     if(matchString.indexOf("five") != -1){
       return 5;
+    }
+    if(" " == matchString.substr(0,1)){
+      return parseInt(matchString.substr(1,1));
     }
     return parseInt(matchString.substr(0,1));
   }
@@ -80,7 +83,8 @@ function whichStar(tweet){
 }
 
 for(i in tweets){
-  console.log(whichStar(tweets[i]));
+  //console.log(whichStar(tweets[i]));
+  //console.log(re.exec(tweets[i]));
 }
 
-console.log(re.exec("I give it 4 stars"));
+//console.log(re.exec("I give it 4 stars"));

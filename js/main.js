@@ -24,21 +24,14 @@ var helper = require("./twitterconnect.js");
 var tweetparse = require("./tweetparse.js");
 
 function say(msg){
-//console.log(msg.text);
-//console.log(msg.user.screen_name);
-//currentText = msg.text+" by " +msg.user.screen_name;
 var starred = tweetparse.classifyReview(msg.text);
 if(starred >0){
-  var no = {text:msg.text,username:msg.user.screen_name,date: msg.created_at, image:msg.user.profile_image_url};
-  lastUpdated = msg.created_at;
-  currentStatus[starred] =  no;//msg.text+" by " +msg.user.screen_name +" at " +msg.created_at;
+  var no = {text:msg.text,username:msg.user.screen_name,date: msg.created_at.substr(0,16), image:msg.user.profile_image_url};
+  lastUpdated = msg.created_at.substr(0,16);
+  currentStatus[starred] =  no;
   console.log(currentStatus[starred]);
 }
 currentText = "var map="+JSON.stringify(currentStatus)+";\nvar lastUpdated=\""+lastUpdated+"\";";
-//for(i in currentStatus){
-//currentText+=i+" "+currentStatus[i]+"\n";
-//}
-//console.log("stars: "+starred);
 }
 helper.connectToStream(say);
 
