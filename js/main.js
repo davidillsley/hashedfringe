@@ -26,8 +26,8 @@ var tweetparse = require("./tweetparse.js");
 function say(msg){
 var starred = tweetparse.classifyReview(msg.text);
 if(starred >0){
-  var no = {text:msg.text,username:msg.user.screen_name,date: msg.created_at.substr(0,16), image:msg.user.profile_image_url};
-  lastUpdated = msg.created_at.substr(0,16);
+  var no = {text:msg.text,username:msg.user.screen_name,date: msg.created_at, image:msg.user.profile_image_url};
+  lastUpdated = msg.created_at;
   currentStatus[starred] =  no;
   console.log(currentStatus[starred]);
 }

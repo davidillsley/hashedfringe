@@ -17,8 +17,12 @@ a {
         background-color: white;
 }
 </style>
-<script src="/latest"></script>
+<script src="http://hashedfringe.com/latest"></script>
 <script>
+function reformatDate(dateString){
+var asnum = Date.parse(dateString);
+return new Date(asnum).toLocaleString();
+}
 function populate(){
 var wrapper = document.getElementById("wrapper");
 for(var i=5;i>0;i--){
@@ -26,17 +30,17 @@ if(map[i]){
 var newElement = document.createElement("div");
 newElement.innerHTML="<div><div class=\"fv\"><strong style=\"color:#123456\">Latest "+i+"*</strong><br />"+
 map[i].text+
-"<br /><span style=\"padding-left:30px\"><a href=\"http://twitter.com/"+map[i].username+"\" >"+map[i].username+"</a> @ "+map[i].date+"</span><br /></div>"+
+"<br /><span style=\"padding-left:30px\"><a href=\"http://twitter.com/"+map[i].username+"\" >"+map[i].username+"</a> @ "+reformatDate(map[i].date)+"</span><br /></div>"+
 "<img style=\"position:relative; left:400px; top:-20px;\" src=\""+map[i].image+"\"></div>";
 wrapper.appendChild(newElement);
 }
 }
-document.getElementById("lastUpdated").innerHTML = lastUpdated;
+document.getElementById("lastUpdated").innerHTML = reformatDate(lastUpdated);
 }
 </script>
 </head>
 <body onLoad="populate();">
-<div style="width:400px;">
+<div style="width:500px;">
 <em style="padding-top:-10px">Fresh reviews, direct from <span style="font-size:2em; position:relative; top:20px;">#edfringe</span></em>
 <br />
 <br />
