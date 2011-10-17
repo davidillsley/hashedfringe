@@ -18,9 +18,6 @@ module.exports.connectToStream = function(callback){
 	new RefreshRequest(callback).start();	
 };
 
-var http = require('http');
-var client = http.createClient(80, 'stream.twitter.com');
-
 function RefreshRequest(callback){
 	var self = this;
 	this.cback = callback;
@@ -52,15 +49,24 @@ function RefreshRequest(callback){
   	  self.start();
         };
 	this.start = function(){
+		var https = require('https');
 		var auth = 'Basic ' + new Buffer(process.env.TWITTER_USER+ ':' + process.env.TWITTER_PASS).toString('base64');
-		var request = client.request('POST', '/1/statuses/filter.json',
-		  {'host': 'stream.twitter.com','Authorization': auth, "Content-Type": "application/x-www-form-urlencoded"});
-		request.write('track\=edfringe&delimited\=1', encoding='utf8');
-		request.end();
-		request.on('response', function (response) {
+		var options = {
+			host: 'stream.twitter.com',
+			port: 443,
+			path: '/1/statuses/filter.json',
+			method: 'POST',
+			headers: {
+				'Authorization': auth,
+				"Content-Type": "application/x-www-form-urlencoded"
+			}
+		}
+		var request = https.request(options, function (response) {
 			response.setEncoding('utf8');
   			response.on('data', self.processChunk);
   			response.on('end', self.processComplete);
 		});
+		request.write('track\=edfringe&delimited\=1', encoding='utf8');
+		request.end();
 	};
 }
